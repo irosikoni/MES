@@ -23,7 +23,9 @@ function create_matrix_L(G::Float64, a::Int, b::Int, e_fun, m::Int, h::Float64)
     L::Vector{Float64} = zeros(m)
 
     for j in 1:m
-        L[j] = 4 * pi * G * integral(x -> e_fun(x, j, h), a, b)
+        L[j] = 4 * pi * G * integral(x -> e_fun(x, j, h), a, b, 10)
+        println(L[j])
     end
+
     return L
 end
