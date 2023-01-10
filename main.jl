@@ -15,7 +15,7 @@ end
 
 function MES(n::Int)
     h::Float64 = 3 / (n - 1)
-    G::Float64 = 2
+    G::Float64 = 667 * 10^(-13)
     B = create_matrix_B(n - 2, h)
     B_INV::Matrix{Float64} = inv(B)
     L::Vector{Float64} = create_matrix_L(G, 1, 2, e_fun, n - 2, h)
@@ -26,7 +26,7 @@ function MES(n::Int)
     return w
 end
 
-w = @time MES(100)
+w = MES(100)
 
 a::Float64, b::Float64 = 0.0, 3.0
 p::Int = 800
