@@ -13,16 +13,6 @@ function e_fun(x::Float64, j::Int, h::Float64)
     return 0
 end
 
-# function e_2(x::Float64, j::Int, h::Float64, shift, scaling)
-#     if (h * (j - 1)) * shift + scaling < x < (h * j) * scaling + shift
-#         return (x / h) - j + 1
-#     end
-#     if (h * j) * shift + scaling < x < (h * (j + 1)) * shift + scaling
-#         return j + 1 - (x / h)
-#     end
-#     return 0
-# end
-
 function MES(n::Int)
     h::Float64 = 3 / (n - 1)
     G::Float64 = 2
@@ -33,26 +23,17 @@ function MES(n::Int)
 
     w(x) = sum([e_fun(x, i, h) * A[i] for i in 1:(n-2)])
 
-
-    # println(B)
-    plot(L)
-    savefig("output2.png")
-
     return w
-
 end
 
 w = @time MES(100)
 
 a::Float64, b::Float64 = 0.0, 3.0
-p::Int = 1000
+p::Int = 800
 dx::Float64 = (b - a) / p
 x::Vector{Float64} = a:dx:b
 y = w.(x) .+ 5 .- (x / 3)
 plot(x, y)
 savefig("output.png")
 
-
-
-# println(integral(x -> x^2, 0, 1))
 
